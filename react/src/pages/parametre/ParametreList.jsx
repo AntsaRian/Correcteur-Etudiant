@@ -59,9 +59,9 @@ export default function ParametreList() {
                                 <tr key={p.id} className={i % 2 === 0 ? "row-even" : "row-odd"}>
                                     <td className="cell-id">{p.id}</td>
                                     <td>{p.matiere?.nom || "—"}</td>
-                                    <td>{p.operateur?.symbole || p.operateur?.nom || "—"}</td>
+                                    <td>{p.operateur?.operateur || p.operateur?.nom || "—"}</td>
                                     <td><span className="badge-diff">{p.diff}</span></td>
-                                    <td>{p.resolution?.nom || "—"}</td>
+                                    <td>{p.resolution?.resolution || "—"}</td>
                                     <td className="cell-actions">
                                         <button
                                             className="btn-edit"

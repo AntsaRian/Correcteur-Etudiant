@@ -1,0 +1,162 @@
+/* =========================================
+   Home.css — Elegant, noble, refined
+   Palette: #e6e6fa · #2f4050 · #4a5b6e · #641c34
+   ========================================= */
+
+.form {
+    font-family: 'sato-med', sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+/* ── Titre principal ── */
+.form h1 {
+    font-family: 'sato-bold', sans-serif;
+    font-size: 1.75rem;
+    color: #2f4050;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.form h1::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    background-color: #641c34;
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+/* ── Sous-titres ── */
+.form h3 {
+    font-family: 'sato-med', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4a5b6e;
+    margin-bottom: 0.5rem;
+}
+
+/* ── Message d'erreur ── */
+.form > p[style] {
+    font-family: 'sato-reg', sans-serif;
+    font-size: 0.85rem;
+    background-color: #fdf0f4;
+    border: 1px solid #e8b4c4;
+    color: #641c34;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+}
+
+/* ── Zone de sélection ── */
+.select {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-end;  /* aligne les selects sur la même ligne */
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+/* chaque bloc select + label */
+.select > div,
+.select > h3 ~ select {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.select select {
+    background-color: #ffffff;
+    border: 1.5px solid #d8d8ec;
+    border-radius: 8px;
+    padding: 0.65rem 2.4rem 0.65rem 1rem;
+    font-family: 'sato-reg', sans-serif;
+    font-size: 0.92rem;
+    color: #1e2a35;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5b6e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 200px;
+    box-shadow: 0 2px 8px rgba(47, 64, 80, 0.06);
+}
+
+.select select:focus {
+    border-color: #4a5b6e;
+    box-shadow: 0 0 0 3px rgba(74, 91, 110, 0.12);
+}
+
+/* ── Bouton ── */
+.form button[type="submit"] {
+    background-color: #2f4050;
+    color: #e6e6fa;
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 10px;
+    font-family: 'sato-med', sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 14px rgba(47, 64, 80, 0.2);
+}
+
+.form button[type="submit"]:hover {
+    background-color: #4a5b6e;
+    transform: translateY(-1px);
+}
+
+.form button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+.form button[type="submit"]:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ── Bloc résultat ── */
+.result {
+    margin-top: 2rem;
+    background-color: #ffffff;
+    border: 1px solid #d8d8ec;
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 4px 24px rgba(47, 64, 80, 0.09);
+    display: inline-block;
+    min-width: 240px;
+}
+
+.result h2 {
+    font-family: 'sato-med', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #4a5b6e;
+    margin-bottom: 0.75rem;
+}
+
+.result p {
+    font-family: 'sato-bold', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    line-height: 1;
+}

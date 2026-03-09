@@ -76,7 +76,7 @@ public class ResolutionService {
         return 0.0;
     }
 
-     // somme 
+    // somme 
     public double somme(List<Double> diff) {
         double somme = 0;
 

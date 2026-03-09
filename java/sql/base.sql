@@ -63,11 +63,9 @@ INSERT INTO Etudiant (nom) VALUES
 
 -- Insertion des correcteurs
 INSERT INTO Correcteur (nom) VALUES
-('Randria Pierre'),
-('Rakotondrabe Paul'),
-('Rasoloarison Jean'),
-('Andriambololona Marc'),
-('Razafindrakoto Sophie');
+('Correcteur1'),
+('Correcteur2'),
+('Correcteur3');
 
 -- Insertion des operateurs (corrige)
 INSERT INTO Operateur (operateur) VALUES
@@ -79,11 +77,10 @@ INSERT INTO Resolution (resolution) VALUES
 
 -- Insertion des parametres (corrige pour correspondre a la logique)
 INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES
-(1, 3.0, 2, 2),  -- Maths: diff=3.0, operateur >, resolution plus grand
-(2, 2.0, 2, 1),  -- Francais: diff=2.0, operateur <, resolution plus petit
-(3, 4.0, 2, 2),  -- Histoire Geo: diff=4.0, operateur >, resolution plus grand
-(4, 1.5, 4, 1),  -- Anglais: diff=1.5, operateur <=, resolution plus petit
-(5, 2.5, 5, 3);  -- SVT: diff=2.5, operateur ==, resolution moyenne
+(1, 3.0, 1, 2),  -- Maths: diff=3.0, operateur >, resolution plus grand
+(1, 3.0, 4, 3),  -- Francais: diff=2.0, operateur <, resolution plus petit
+(2, 2.0, 2, 1),  -- Histoire Geo: diff=4.0, operateur >, resolution plus grand
+(2, 2.0, 3, 2);  -- Anglais: diff=1.5, operateur <=, resolution plus petit
 
 -- Insertion des notes adaptees pour que les calculs de differences soient coherents
 INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES

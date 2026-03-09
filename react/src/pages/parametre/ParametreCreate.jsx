@@ -99,7 +99,7 @@ export default function ParametreCreate() {
                         <select name="id_operateur" value={form.id_operateur} onChange={handleChange}>
                             <option value="">— Sélectionner —</option>
                             {operateurs.map(o => (
-                                <option key={o.id} value={o.id}>{o.symbole || o.nom}</option>
+                                <option style={{color: "#2f4050"}} key={o.id} value={o.id}>{o.symbole || o.nom}</option>
                             ))}
                         </select>
                     </div>

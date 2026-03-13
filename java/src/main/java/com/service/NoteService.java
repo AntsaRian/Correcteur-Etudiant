@@ -100,7 +100,7 @@ public class NoteService {
     }
 
     // note finale etu par matiere
-    public double note_final_matiere(int id_etudiant, int id_matiere) {
+    public double note_final_matiere(int id_etudiant, int id_matiere) throws Exception {
         List<Double> notes_etu = get_notes_matiere_etudiant(id_matiere, id_etudiant);
         List<Double> all_diff = get_all_diff_notes(notes_etu);
         double diff_matiere = resolutionService.somme(all_diff);
@@ -115,7 +115,8 @@ public class NoteService {
             return notes_etu.get(0);
         }
 
-        String resolution = resolutionService.get_resolution(parametres, diff_matiere);
+        // String resolution = resolutionService.get_resolution(parametres, diff_matiere);
+        String resolution = resolutionService.get_resolution_v2(parametres, diff_matiere);
 
         // note finale
         return resolutionService.find_resolution(notes_etu, resolution);

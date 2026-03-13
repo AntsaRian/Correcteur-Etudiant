@@ -1,5 +1,5 @@
-CREATE DATABASE correcteur_etudiant;
-\c correcteur_etudiant;
+CREATE DATABASE correcteur_etudiant_v2;
+\c correcteur_etudiant_v2;
 
 CREATE TABLE Matiere (
     id SERIAL PRIMARY KEY,

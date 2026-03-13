@@ -14,7 +14,7 @@ public class Controller {
     NoteService noteService;
 
     @PostMapping("/note")
-    public double get_note_by_matiere_etu(@RequestBody JsonNode data) {
+    public double get_note_by_matiere_etu(@RequestBody JsonNode data) throws Exception {
 
         Integer id_etu = data.get("id_etudiant").asInt();
         Integer id_matiere = data.get("id_matiere").asInt();

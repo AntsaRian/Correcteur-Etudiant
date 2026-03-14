@@ -94,6 +94,19 @@ public class ResolutionService {
         return param;
     }
 
+    // get parametre with diff
+    public List<Parametre> get_parametre_with_diff(double diff, List<Parametre> parametres) {
+        List <Parametre> param = new ArrayList<>();
+
+        for (Parametre p : parametres) {
+            if (p.getDiff() == diff) {
+                param.add(p);
+            }
+        }
+
+        return param;
+    }
+
     // resolution liste param ecart
     public Parametre resolution_param_ecart(List<Parametre> parametres) {
         return parametres.get(0);
@@ -105,24 +118,20 @@ public class ResolutionService {
     }
 
     // resolution v2 ecart 0
-    public String reso_v2_ecart0(List<Parametre> parametre, double diff) throws Exception {
+    public String reso_v2_ecart0(List<Parametre> parametre, double diff) {
         String reso = null;
 
         // mijery sode misy ecart = 0
-        for (Parametre p0 : parametre) {
-            double ecart = Math.abs(p0.getDiff() - diff);
+        double ecart = 0;
 
-            List<Parametre> parametre_with_ecart = get_parametre_with_ecart(ecart, diff, parametre);
+        List<Parametre> parametre_with_ecart = get_parametre_with_ecart(ecart, diff, parametre);
 
-            if (parametre_with_ecart.size() > 1) {
-                reso = resolution_param_ecart(parametre_with_ecart).getResolution().getResolution();
-                return reso;
-            } else if (parametre_with_ecart.size() == 1) {
-                reso = parametre_with_ecart.get(0).getResolution().getResolution();
-                return reso;
-            } else {
-                throw new Exception("Resolution non trouve");
-            }
+        if (parametre_with_ecart.size() > 1) {
+            reso = resolution_param_ecart(parametre_with_ecart).getResolution().getResolution();
+            return reso;
+        } else if (parametre_with_ecart.size() == 1) {
+            reso = parametre_with_ecart.get(0).getResolution().getResolution();
+            return reso;
         }
 
         return reso;
@@ -140,7 +149,7 @@ public class ResolutionService {
                 // mijery anle param le plus petit
                 parametre_inf_ecart.sort(Comparator.comparing(Parametre::getDiff));
 
-                List<Parametre> parametre_with_ecart = get_parametre_with_ecart(Math.abs(parametre_inf_ecart.get(0).getDiff() - diff), diff, parametre_inf_ecart);
+                List<Parametre> parametre_with_ecart = get_parametre_with_diff(parametre_inf_ecart.get(0).getDiff(), parametre_inf_ecart);
 
                 // param plus petit bedabe
                 if (parametre_with_ecart.size() > 1) {

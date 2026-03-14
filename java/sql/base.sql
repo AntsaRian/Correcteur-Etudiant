@@ -77,16 +77,16 @@ INSERT INTO Resolution (resolution) VALUES
 
 -- Insertion des parametres (corrige pour correspondre a la logique)
 INSERT INTO Parametre (id_matiere, diff, id_operateur, id_resolution) VALUES
-(1, 7.0, 1, 2),  -- Maths: diff=3.0, operateur >, resolution plus grand
-(1, 7.0, 4, 3),  -- Francais: diff=2.0, operateur <, resolution plus petit
-(2, 2.0, 2, 1),  -- Histoire Geo: diff=4.0, operateur >, resolution plus grand
-(2, 2.0, 3, 2);  -- Anglais: diff=1.5, operateur <=, resolution plus petit
+(1, 10.0, 1, 1),  -- Maths: diff=3.0, operateur >, resolution plus grand
+(1, 15.0, 4, 2),  -- Francais: diff=2.0, operateur <, resolution plus petit
+(2, 12.0, 2, 3),  -- Histoire Geo: diff=4.0, operateur >, resolution plus grand
+(2, 16.0, 3, 1);  -- Anglais: diff=1.5, operateur <=, resolution plus petit
 
 -- Insertion des notes adaptees pour que les calculs de differences soient coherents
 INSERT INTO Note (id_matiere, note, id_correcteur, id_etudiant) VALUES
 -- Etudiant 1: Rakoto Jean
-(1, 12.0, 1, 1),  -- Maths par correcteur 1
-(1, 14.0, 2, 1),  -- Maths par correcteur 2
+(1, 14.0, 1, 1),  -- Maths par correcteur 1
+(1, 17.0, 2, 1),  -- Maths par correcteur 2
 (1, 10.0, 3, 1),  -- Maths par correcteur 3 (difference: |14-12|=2, |14-10|=4, |12-10|=2, somme=8 > 3.0 -> prend 14)
 (2, 15.0, 1, 1),  -- Francais par correcteur 1
 (2, 12.0, 2, 1),  -- Francais par correcteur 2 

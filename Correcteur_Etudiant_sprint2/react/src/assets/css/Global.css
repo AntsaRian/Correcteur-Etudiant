@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'sato-bold';
+    src: url('../fonts/Satoshi-Bold.otf');
+}
+
+@font-face {
+    font-family: 'sato-med';
+    src: url('../fonts/Satoshi-Medium.otf');
+}
+
+@font-face {
+    font-family: 'sato-thin';
+    src: url('../fonts/Satoshi-Light.otf');
+}
+
+@font-face {
+    font-family: 'sato-reg';
+    src: url('../fonts/Satoshi-Regular.otf');
+}
+
+* {
+    background-color: whitesmoke;
+}

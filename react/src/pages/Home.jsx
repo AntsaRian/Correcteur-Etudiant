@@ -82,7 +82,7 @@ export default function Home() {
         <div style={{ textAlign: "center" }} className="form">
 
             <h1>Plateforme des résultats de l'examen officiel</h1>
-            <h2 style={{color: "#2f4050"}}>ETU003533</h2>
+            <h1 style={{color: "#2f4050"}}>ETU003533</h1>
 
             {error && <p style={{color:"red"}}>{error}</p>}
 

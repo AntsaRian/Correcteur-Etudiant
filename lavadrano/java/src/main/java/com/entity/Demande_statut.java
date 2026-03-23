@@ -1,7 +1,9 @@
 package com.entity;
 
 import jakarta.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "Demande_statut")
@@ -18,12 +20,18 @@ public class Demande_statut {
     @JoinColumn(name = "id_statut", nullable = false)
     private Statuts statuts;
 
-    @Column(name = "daty", nullable = false)
-    private Date daty;
+    @Column(name = "daty", nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime daty;
 
     public Demande_statut () {}
 
-    public Demande_statut(Integer id, Demande demande, Statuts statuts, Date daty) {
+    public Demande_statut(Demande demande, Statuts statuts) {
+        this.demande = demande;
+        this.statuts = statuts;
+    }
+
+    public Demande_statut(Integer id, Demande demande, Statuts statuts, LocalDateTime daty) {
         this.id = id;
         this.demande = demande;
         this.statuts = statuts;
@@ -54,11 +62,11 @@ public class Demande_statut {
         this.statuts = statuts;
     }
 
-    public Date getDaty() {
+    public LocalDateTime getDaty() {
         return daty;
     }
 
-    public void setDaty(Date daty) {
+    public void setDaty(LocalDateTime daty) {
         this.daty = daty;
     }
 }

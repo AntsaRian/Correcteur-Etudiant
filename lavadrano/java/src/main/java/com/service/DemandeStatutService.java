@@ -16,7 +16,8 @@ public class DemandeStatutService {
     @Autowired
     private Demande_statutRepository demandeStatutRepository;
 
-    public Integer create(Demande_statut m) {
+    @Transactional
+    public Integer create(Demande_statut m) throws Exception {
         Demande_statut saved = demandeStatutRepository.save(m);
         return saved.getId();
     }

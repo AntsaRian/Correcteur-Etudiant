@@ -1,6 +1,8 @@
 package com.service;
 
 import com.entity.Demande;
+import com.entity.Demande_statut;
+import com.entity.Statuts;
 import com.repository.DemandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,20 @@ public class DemandeService {
     @Autowired
     private DemandeRepository demandeRepository;
 
-    public Integer create(Demande m) {
+    @Autowired
+    private StatutsService statutsService;
+
+    @Autowired
+    private DemandeStatutService demandeStatutService;
+
+    @Transactional
+    public Integer create(Demande m) throws Exception {
         Demande saved = demandeRepository.save(m);
+
+        Statuts s = statutsService.getAll().get(0);
+        Demande_statut ds = new Demande_statut(saved, s);
+        demandeStatutService.create(ds);
+
         return saved.getId();
     }
 

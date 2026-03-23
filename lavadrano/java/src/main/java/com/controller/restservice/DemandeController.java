@@ -31,7 +31,7 @@ public class DemandeController {
     }
 
     @PostMapping("/demandes")
-    public ResponseEntity<Integer> create(@RequestBody Demande demande) {
+    public ResponseEntity<Integer> create(@RequestBody Demande demande) throws Exception {
         Integer id = demandeService.create(demande);
         return ResponseEntity.ok(id);
     }

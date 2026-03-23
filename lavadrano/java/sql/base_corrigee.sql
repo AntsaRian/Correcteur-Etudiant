@@ -21,7 +21,6 @@ CREATE TABLE Type_devis (
 
 CREATE TABLE Devis (
     id SERIAL PRIMARY KEY,
-    montant_total DECIMAL(10,2),
     id_type_devis INT REFERENCES Type_devis(id) NOT NULL,
     daty DATE DEFAULT CURRENT_DATE,
     id_demande INT REFERENCES Demande(id) NOT NULL
@@ -31,7 +30,8 @@ CREATE TABLE Details_devis (
     id SERIAL PRIMARY KEY,
     id_devis INT REFERENCES Devis(id) NOT NULL,
     libelle VARCHAR(50) NOT NULL,
-    montant DECIMAL(10,2) NOT NULL
+    prix_unitaire DECIMAL(10,2) NOT NULL,
+    quantite INT NOT NULL
 );
 
 CREATE TABLE Statuts (
@@ -49,8 +49,10 @@ CREATE TABLE Demande_statut (
 
 -- Donnees base
 INSERT INTO Statuts(libelle) VALUES
-('Devis accepte'),
-('Devis refuse'),
+('Cree'),
+('Devis cree'),
+('Devis etude accepte'),
+('Devis etude refuse'),
 ('Forage accepte'),
 ('Forage refuse'),
 ('Analyse terminee');

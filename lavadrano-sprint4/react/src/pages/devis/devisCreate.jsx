@@ -81,7 +81,7 @@ export default function DevisCreate() {
     function ajouterLigne() {
         setDetails(prev => [
             ...prev,
-            { id: Date.now(), libelle: "", pu: 0, qte: 1 }
+            { id: Date.now(), libelle: "", prix_unitaire: 0, quantite: 1 }
         ]);
     }
 
@@ -113,9 +113,31 @@ export default function DevisCreate() {
     // o -> valeur de départ du total (on commence à zéro)
     const montantTotal = details.reduce((acc, d) => acc + (d.prix_unitaire * d.quantite), 0);
 
+    function validate_form() {
+        if (!inputValue) {
+            setError("Id demande obligatoire");
+            alert(Error);
+            return;
+        }
+
+        if (!type_devis_select) {
+            setError("Type devis obligatoire");
+            alert(Error);
+            return;
+        }
+
+        if (details.length <= 0) {
+            setError("Details devis obligatoire");
+            alert(Error);
+            return;
+        }
+    }
+
     async function creer_devis_avec_details(e) {
         e.preventDefault();
         setError("");
+
+        validate_form();
 
         const data = {
             demande:    { id: parseInt(inputValue) },
@@ -184,6 +206,7 @@ export default function DevisCreate() {
                                 onChange={handleChangeDemande}
                                 onBlur={() => get_demande_by_id(inputValue)}
                                 placeholder="Id de la demande..."
+                                required
                             />
                             {suggestions.length > 0 && (
                                 <ul style={{
@@ -238,6 +261,7 @@ export default function DevisCreate() {
                                     className="form-select"
                                     value={type_devis_select}
                                     onChange={handleDevis}
+                                    required
                                 >
                                     <option value="">Choisir</option>
                                     {type_devis.map((m) => (
@@ -260,9 +284,9 @@ export default function DevisCreate() {
                                     {/* Lignes */}
                                     {details.map((d) => (
                                         <div key={d.id} className="details-devis-form-div">
-                                            <input value={d.libelle} onChange={(e) => handleDetailChange(d.id, "libelle", e.target.value)} />
-                                            <input type="number" value={d.pu} onChange={(e) => handleDetailChange(d.id, "prix_unitaire", parseFloat(e.target.value) || 0)} />
-                                            <input type="number" value={d.qte} onChange={(e) => handleDetailChange(d.id, "quantite", parseInt(e.target.value) || 1)} />
+                                            <input value={d.libelle} onChange={(e) => handleDetailChange(d.id, "libelle", e.target.value)} required />
+                                            <input type="number" value={d.prix_unitaire} onChange={(e) => handleDetailChange(d.id, "prix_unitaire", parseFloat(e.target.value) || 0)} required />
+                                            <input type="number" value={d.quantite} onChange={(e) => handleDetailChange(d.id, "quantite", parseInt(e.target.value) || 1)} required />
                                             <span className="montant-cell">{(d.prix_unitaire * d.quantite).toLocaleString()} Ar</span>
                                             <div className={`btn-ligne-delete ${details.length <= 1 ? "disabled" : ""}`}
                                                 onClick={() => supprimerLigne(d.id)}>

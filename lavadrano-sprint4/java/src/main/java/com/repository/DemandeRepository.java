@@ -13,4 +13,7 @@ import java.util.Optional;
 public interface DemandeRepository extends JpaRepository<Demande, Integer> {
     @Query("SELECT d.id FROM Demande d")
     List<Integer> get_id_demande();
+
+    @Query("SELECT d.id FROM Demande d WHERE CAST(d.id AS string) LIKE :idSearch%")
+    List<Integer> findIdsStartingWith(@Param("idSearch") String idSearch);
 }

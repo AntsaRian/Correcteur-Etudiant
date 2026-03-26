@@ -33,12 +33,7 @@ public class DemandeController {
 
     @GetMapping("/demandes/search")
     public List<Integer> search(@RequestParam Integer id) {
-        List<Integer> list = demandeService.searchById(id);
-
-        // for (Integer integer : list) {
-        //     System.out.println("ID: "+integer);
-        // }
-
+        List<Integer> list = demandeService.find_all_id_starts_with(id);
         return list;
     }
 

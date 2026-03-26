@@ -44,11 +44,11 @@ export default function DemandeList() {
                     <table className="etu-table">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Client</th>
-                                <th>Lieu</th>
-                                <th>District</th>
-                                <th>Actions</th>
+                                <th style={{color: "black"}}>#</th>
+                                <th style={{color: "black"}}>Client</th>
+                                <th style={{color: "black"}}>Lieu</th>
+                                <th style={{color: "black"}}>District</th>
+                                <th style={{color: "black"}}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

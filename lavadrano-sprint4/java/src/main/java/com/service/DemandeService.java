@@ -64,4 +64,8 @@ public class DemandeService {
             .filter(d -> d.toString().startsWith(id.toString()))
             .collect(Collectors.toList());
     }
+
+    public List<Integer> find_all_id_starts_with (Integer id) {
+        return demandeRepository.findIdsStartingWith(id.toString());
+    }
 }

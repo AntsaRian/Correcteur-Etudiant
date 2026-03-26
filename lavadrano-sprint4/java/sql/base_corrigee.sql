@@ -61,6 +61,36 @@ INSERT INTO Type_devis (libelle) VALUES
 ('Etude'),
 ('Forage');
 
+INSERT INTO Client (nom, contact) VALUES 
+('Jean Rakoto', '+261 34 00 123 45'),
+('Marie Sarah', 'marie.sarah@email.mg'),
+('Entreprise Forage Plus', 'contact@forageplus.com');
+
+INSERT INTO Demande (id_client, lieu, district) VALUES 
+(1, 'Analamahitsy', 'Antananarivo Renivohitra'),
+(1, 'Ivato', 'Ambohidratrimo'),
+(2, 'Talatamaty', 'Ambohidratrimo'),
+(2, 'Behoririka', 'Antananarivo Renivohitra'),
+(3, 'Ambohimanarina', 'Antananarivo Renivohitra'),
+(3, 'Alakamisy Fenoarivo', 'Antananarivo Atsimondrano'),
+(1, 'Itanosy', 'Antananarivo Atsimondrano'),
+(2, 'Andraharo', 'Antananarivo Renivohitra'),
+(3, 'Ankorondrano', 'Antananarivo Renivohitra'),
+(1, 'Sabotsy Namehana', 'Antananarivo Avaradrano');
+
+-- On insère un statut "Cree" pour chacune des 10 demandes précédentes
+INSERT INTO Demande_statut (id_demande, id_statut, daty) VALUES 
+(1, 1, '2026-03-20 08:00:00'),
+(2, 1, '2026-03-20 09:15:00'),
+(3, 1, '2026-03-21 10:30:00'),
+(4, 1, '2026-03-21 11:00:00'),
+(5, 1, '2026-03-22 14:00:00'),
+(6, 1, '2026-03-22 15:30:00'),
+(7, 1, '2026-03-23 08:45:00'),
+(8, 1, '2026-03-23 10:00:00'),
+(9, 1, '2026-03-24 11:20:00'),
+(10, 1, '2026-03-25 09:00:00');
+
 -- REINITIALISATION
 TRUNCATE TABLE Demande_statut RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Statuts RESTART IDENTITY CASCADE;

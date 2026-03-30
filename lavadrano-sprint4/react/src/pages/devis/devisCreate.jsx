@@ -150,7 +150,7 @@ export default function DevisCreate() {
             }))
         };
 
-        console.log(data);
+        // console.log(data);
 
         try {
             const response = await fetch(`${API}/devis`, {
@@ -160,9 +160,13 @@ export default function DevisCreate() {
             });
 
             const result = await response.json();
-            console.log(result);
-            setId_devis_insert(result);
-            success();
+            const id = parseInt(result);
+            
+            console.log(`id devis ${id}`);
+            setId_devis_insert(id);
+
+            success(id);
+
         } catch (error) {
             setError({ api: "Erreur serveur" });
         }
@@ -179,9 +183,10 @@ export default function DevisCreate() {
         ])
     }
 
-    function success () {
-        alert("Devis avec ses lignes inserées, #"+id_devis_insert);
+    function success (id) {
+        alert("Devis avec ses lignes inserées, #"+id);
         clearForm();
+        get_type_devis();
     }
 
     return (
@@ -278,7 +283,6 @@ export default function DevisCreate() {
                                         <span>P.U</span>
                                         <span>Quantité</span>
                                         <span>Montant</span>
-                                        <span></span>
                                     </div>
 
                                     {/* Lignes */}

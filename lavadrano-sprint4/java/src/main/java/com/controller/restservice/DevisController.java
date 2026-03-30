@@ -32,7 +32,6 @@ public class DevisController {
 
     @PostMapping("/devis")
     public ResponseEntity<Integer> create(@RequestBody Devis devis) throws Exception {
-        System.out.println("DEVIS: "+devis.getId());
         Integer id = devisService.create(devis);
         return ResponseEntity.ok(id);
     }

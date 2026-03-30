@@ -43,19 +43,15 @@ CREATE TABLE Demande_statut (
     id SERIAL PRIMARY KEY,
     id_demande INT REFERENCES Demande(id) NOT NULL,
     id_statut INT REFERENCES Statuts(id) NOT NULL,
-    daty TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    daty TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 -- Donnees base
 INSERT INTO Statuts(libelle) VALUES
 ('Cree'),
-('Devis cree'),
-('Devis etude accepte'),
-('Devis etude refuse'),
-('Forage accepte'),
-('Forage refuse'),
-('Analyse terminee');
+('Devis etude cree'),
+('Devis forage cree');
 
 INSERT INTO Type_devis (libelle) VALUES
 ('Etude'),
@@ -91,11 +87,22 @@ INSERT INTO Demande_statut (id_demande, id_statut, daty) VALUES
 (9, 1, '2026-03-24 11:20:00'),
 (10, 1, '2026-03-25 09:00:00');
 
+-- Donnees additionnelles
+INSERT INTO Devis (id_type_devis, daty, id_demande) VALUES
+(1, '2026-03-30', 1);
+
+INSERT INTO Details_devis (id_devis, libelle, prix_unitaire, quantite) VALUES
+(1, 'Transport', 600.00, 1);
+
+INSERT INTO Demande_statut (id_demande, id_statut, daty) VALUES
+(1, 2, CURRENT_TIMESTAMP);
+
 -- REINITIALISATION
 TRUNCATE TABLE Demande_statut RESTART IDENTITY CASCADE;
-TRUNCATE TABLE Statuts RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Details_devis RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Devis RESTART IDENTITY CASCADE;
+
+TRUNCATE TABLE Statuts RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Type_devis RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Demande RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Client RESTART IDENTITY CASCADE;

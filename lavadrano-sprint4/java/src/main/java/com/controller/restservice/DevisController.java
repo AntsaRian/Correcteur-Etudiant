@@ -19,8 +19,8 @@ public class DevisController {
     private DevisService devisService;
 
     @GetMapping("/devis")
-    public List<Devis> getAll() {
-        return devisService.getAll();
+    public List<Object[]> getAll() throws Exception {
+        return devisService.getAll_avec_statut();
     }
 
     @GetMapping("/devis/{id}")

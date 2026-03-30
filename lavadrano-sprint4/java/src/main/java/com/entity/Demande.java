@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +20,9 @@ public class Demande {
 
     @Column(name = "district", nullable = false, length = 50)
     private String district;
+
+    @OneToMany(mappedBy = "demande")
+    private List<Demande_statut> demande_statuts;
 
     // ---------- Constructeurs ----------
     public Demande() {}

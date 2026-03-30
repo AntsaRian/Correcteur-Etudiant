@@ -34,13 +34,15 @@ public class DevisService {
             }
         }
 
+        System.out.println("Details_devis: "+devis.getDetail_devis().get(0).getLibelle());
+
         // Lier automatiquement par cascade = CascadeType.ALL ao am Entity Devis
         Devis saved = devisRepository.save(devis);
 
         // creer demande statut
-        // Statuts s = saved.getType_devis().getId() == 1 ? statutsService.getAll().get(2) : statutsService.getAll().get(4);
-        // Demande_statut ds = new Demande_statut(saved.getDemande(), s);
-        // demandeStatutService.create(ds);
+        Statuts s = saved.getType_devis().getId() == 1 ? statutsService.getAll().get(1) : statutsService.getAll().get(2);
+        Demande_statut ds = new Demande_statut(saved.getDemande(), s);
+        demandeStatutService.create(ds);
 
         return saved.getId();
     }
@@ -57,11 +59,20 @@ public class DevisService {
         return true;
     }
 
-    public List<Devis> getAll() {
-        return devisRepository.findAll();
+    public List<Devis> getAll() throws Exception {
+        try {
+            return devisRepository.findAll();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public Optional<Devis> getById(Integer id) {
         return devisRepository.findById(id);
+    }
+
+    // get all with status
+    public List<Object[]> getAll_avec_statut () {
+        return devisRepository.getAll_avec_statut();
     }
 }

@@ -10,12 +10,18 @@ import java.util.List;
 @Repository
 public interface DevisRepository extends JpaRepository<Devis, Integer> {
     // getAll_avec statut
-    @Query("""
+   @Query("""
         SELECT d, ds 
         FROM Devis d 
         JOIN Details_devis dv ON d.id = dv.devis.id 
         JOIN Demande_statut ds ON ds.demande.id = d.demande.id
-        ORDER BY ds.daty DESC
+        WHERE ds.id = (
+            SELECT MIN(ds2.id)
+            FROM Demande_statut ds2
+            WHERE ds2.demande.id = d.demande.id
+            AND ds2.daty >= d.daty
+        )
+        ORDER BY d.id DESC
     """)
-    List<Object[]> getAll_avec_statut();    
-}
+    List<Object[]> getAll_avec_statut();   
+}   

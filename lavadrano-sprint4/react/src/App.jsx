@@ -13,6 +13,8 @@ import DemandeCreate from "./pages/demande/DemandeCreate";
 import DemandeEdit   from "./pages/demande/DemandeEdit";
 
 import TypeDevisList from "./pages/type_devis/typeDevisList";
+import TypeDevisCreate from "./pages/type_devis/typeDevisCreate";
+import TypeDevisEdit from "./pages/type_devis/typeDevisEdit";
 
 import DevisCreate from "./pages/devis/devisCreate";
 
@@ -35,8 +37,8 @@ function App() {
           <Route path="/Demande/edit/:id"  element={<DemandeEdit />} />
 
           <Route path="/TypeDevis"           element={<TypeDevisList />} />
-          {/* <Route path="/TypeDevis/create"    element={<TypeDevisCreate />} />
-          <Route path="/TypeDevis/edit/:id"  element={<TypeDevisEdit />} /> */}
+          <Route path="/TypeDevis/create"    element={<TypeDevisCreate />} />
+          <Route path="/TypeDevis/edit/:id"  element={<TypeDevisEdit />} />
 
           <Route path="/Devis"           element={<DevisCreate />} />
 

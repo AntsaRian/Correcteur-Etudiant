@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -40,7 +45,10 @@ public class DevisService {
         Devis saved = devisRepository.save(devis);
 
         // creer demande statut
-        Statuts s = saved.getType_devis().getId() == 1 ? statutsService.getAll().get(1) : statutsService.getAll().get(2);
+        Statuts s = saved.getType_devis().getId() == 1 ? statutsService.getAll().get(1) : 
+        saved.getType_devis().getId() == 2 ? statutsService.getAll().get(2) : 
+        statutsService.getAll().get(0);
+        
         Demande_statut ds = new Demande_statut(saved.getDemande(), s);
         demandeStatutService.create(ds);
 
@@ -72,7 +80,30 @@ public class DevisService {
     }
 
     // get all with status
-    public List<Object[]> getAll_avec_statut () {
-        return devisRepository.getAll_avec_statut();
+    public List<Map<String, Object>> getAll_avec_statut() {
+        List<Object[]> rows = devisRepository.getAll_avec_statut();
+
+        List<Map<String, Object>> result = new ArrayList<>();
+        Set<Integer> dejaAjoutes = new HashSet<>();
+
+        for (Object[] row : rows) {
+            Devis d            = (Devis) row[0];
+            Demande_statut ds  = (Demande_statut) row[1];
+
+            if (dejaAjoutes.contains(d.getId())) continue;
+            dejaAjoutes.add(d.getId());
+
+            Map<String, Object> item = new HashMap<>();
+            item.put("id",               d.getId());
+            item.put("daty",             d.getDaty());
+            item.put("clientNom",        d.getDemande().getClient().getNom());
+            item.put("lieu",             d.getDemande().getLieu());
+            item.put("typeDevisLibelle", d.getType_devis().getLibelle());
+            item.put("statutLibelle",    ds.getStatuts().getLibelle());
+
+            result.add(item);
+        }
+
+        return result;
     }
 }

@@ -270,37 +270,34 @@ export default function DevisCreate() {
                                     <th style={{color: "black"}}>Client</th>
                                     <th style={{color: "black"}}>Lieu</th>
                                     <th style={{color: "black"}}>Type devis</th>
-                                    <th style={{color: "black"}}>Statut</th>
-                                    <th style={{color: "black"}}>Date</th>
+                                    {/* <th style={{color: "black"}}>Statut</th>
+                                    <th style={{color: "black"}}>Date</th> */}
                                     <th style={{color: "black"}}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {allDevis.length === 0 ? (
                                     <tr>
-                                        <td colSpan="6" className="empty-row">Aucun devis trouvé</td>
+                                        <td colSpan="7" className="empty-row">Aucun devis trouvé</td>
                                     </tr>
-                                    ) : allDevis.map((dv, i) => (
-                                        <tr key={dv[0].id || i} className={i % 2 === 0 ? "row-even" : "row-odd"}>
-                                            <td className="cell-id">{dv[0].id}</td>
-                                            <td className="cell-nom">
-                                                <span className="avatar">
-                                                    {dv[0].demande?.client?.nom?.charAt(0).toUpperCase()}
-                                                </span>
-                                                {dv[0].demande?.client?.nom}
-                                            </td>
-                                            <td>{dv[0].demande?.lieu}</td>
-                                            <td>{dv[0].type_devis?.libelle}</td>
-                                            <td>{dv[1].statuts?.libelle}</td>
-                                            <td>{dv[1].daty}</td>
-                                            <td className="cell-actions">
-                                                <button className="btn-delete"
-                                                    onClick={() => handleDelete(dv[0].id)}>
-                                                    Supprimer
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                ) : allDevis.map((dv, i) => (
+                                    <tr key={dv.id} className={i % 2 === 0 ? "row-even" : "row-odd"}>
+                                        <td className="cell-id">{dv.id}</td>
+                                        <td className="cell-nom">
+                                            <span className="avatar">{dv.clientNom?.charAt(0).toUpperCase()}</span>
+                                            {dv.clientNom}
+                                        </td>
+                                        <td>{dv.lieu}</td>
+                                        <td>{dv.typeDevisLibelle}</td>
+                                        {/* <td>{dv.statutLibelle ?? "—"}</td>
+                                        <td>{dv.daty}</td> */}
+                                        <td className="cell-actions">
+                                            <button className="btn-delete" onClick={() => handleDelete(dv.id)}>
+                                                Supprimer
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

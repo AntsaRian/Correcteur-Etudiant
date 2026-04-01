@@ -49,8 +49,8 @@ export default function TypeDevisList() {
                                 <tr key={e.id} className={i % 2 === 0 ? "row-even" : "row-odd"}>
                                     <td className="cell-id">{e.id}</td>
                                     <td className="cell-nom">
-                                        <span className="avatar">{e.nom?.charAt(0).toUpperCase()}</span>
-                                        {e.nom}
+                                        <span className="avatar">{e.libelle?.charAt(0).toUpperCase()}</span>
+                                        {e.libelle}
                                     </td>
                                     <td className="cell-actions">
                                         <button

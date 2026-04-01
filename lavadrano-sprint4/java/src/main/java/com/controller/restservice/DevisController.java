@@ -1,6 +1,7 @@
 package com.controller.restservice;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class DevisController {
     private DevisService devisService;
 
     @GetMapping("/devis")
-    public List<Object[]> getAll() throws Exception {
+    public List<Map<String, Object>> getAll() {
         return devisService.getAll_avec_statut();
     }
 

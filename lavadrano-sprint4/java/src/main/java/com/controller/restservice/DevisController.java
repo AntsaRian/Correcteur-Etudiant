@@ -24,6 +24,11 @@ public class DevisController {
         return devisService.getAll_avec_statut();
     }
 
+    @GetMapping("/somme_devis")
+    public double somme_devis_rehetra() {
+        return devisService.somme_devis_rehetra();
+    }
+
     @GetMapping("/devis/{id}")
     public ResponseEntity<Devis> getById(@PathVariable Integer id) {
         Optional<Devis> n = devisService.getById(id);

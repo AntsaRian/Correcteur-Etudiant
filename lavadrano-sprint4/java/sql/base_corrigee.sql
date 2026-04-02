@@ -46,6 +46,12 @@ CREATE TABLE Demande_statut (
     daty TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE Remise (
+    id SERIAL PRIMARY KEY,
+    pourcentage INT,
+    valeur DECIMAL(10,2)
+);
+
 
 -- Donnees base
 INSERT INTO Statuts(libelle) VALUES
@@ -87,6 +93,9 @@ INSERT INTO Demande_statut (id_demande, id_statut, daty) VALUES
 (9, 1, '2026-03-24 11:20:00'),
 (10, 1, '2026-03-25 09:00:00');
 
+INSERT INTO Remise (pourcentage, valeur) VALUES
+(10, 1000000);
+
 -- Donnees additionnelles
 INSERT INTO Devis (id_type_devis, daty, id_demande) VALUES
 (1, '2026-03-30', 1);
@@ -102,7 +111,19 @@ TRUNCATE TABLE Demande_statut RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Details_devis RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Devis RESTART IDENTITY CASCADE;
 
-TRUNCATE TABLE Statuts RESTART IDENTITY CASCADE;
-TRUNCATE TABLE Type_devis RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Demande RESTART IDENTITY CASCADE;
 TRUNCATE TABLE Client RESTART IDENTITY CASCADE;
+
+TRUNCATE TABLE Statuts RESTART IDENTITY CASCADE;
+TRUNCATE TABLE Type_devis RESTART IDENTITY CASCADE;
+
+-- remise 10% => PU > 1 000 000
+-- somme details devis => sql
+-- afficher page iray reponse sql
+
+-- SOMME DEVIS
+SELECT SUM(dv.prix_unitaire * dv.quantite) AS Somme
+FROM Devis d
+JOIN Details_devis dv 
+ON d.id = dv.id_devis
+WHERE d.id = 1;

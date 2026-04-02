@@ -18,6 +18,8 @@ import TypeDevisEdit from "./pages/type_devis/typeDevisEdit";
 
 import DevisCreate from "./pages/devis/devisCreate";
 
+import SommeDevis from "./pages/somme_devis/somme_devis";
+
 function App() {
   return (
     <BrowserRouter>
@@ -41,6 +43,7 @@ function App() {
           <Route path="/TypeDevis/edit/:id"  element={<TypeDevisEdit />} />
 
           <Route path="/Devis"           element={<DevisCreate />} />
+          <Route path="/SommeDevis"           element={<SommeDevis />} />
 
         </Routes>
       </div>

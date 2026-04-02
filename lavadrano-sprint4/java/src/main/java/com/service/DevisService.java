@@ -30,6 +30,9 @@ public class DevisService {
     @Autowired
     private DemandeStatutService demandeStatutService;
 
+    @Autowired
+    private RemiseService remiseService;
+
     @Transactional
     public Integer create(Devis devis) throws Exception {
         // Lier hoe ty details ty -> ty ny devis (id_devis dans Details_devis)
@@ -38,6 +41,26 @@ public class DevisService {
                 d.setDevis(devis);
             }
         }
+
+        // remise 10%
+        List<Details_devis> dv = new ArrayList<>();
+        int pourcentage = remiseService.getAll().get(0).getPourcentage();
+        double valeur = remiseService.getAll().get(0).getValeur();
+
+        for (Details_devis d : devis.getDetail_devis()) {
+            double pu = d.getPrix_unitaire();
+
+            if (pu >= valeur) {
+                double pu_remise = (pu * pourcentage) / 100;
+                pu = pu - pu_remise;
+                d.setPrix_unitaire(pu);
+                dv.add(d);
+            }
+
+            System.out.println("PU DET DEV: "+d.getPrix_unitaire());
+        }
+
+        devis.setDetail_devis(dv);
 
         System.out.println("Details_devis: "+devis.getDetail_devis().get(0).getLibelle());
 
@@ -105,5 +128,10 @@ public class DevisService {
         }
 
         return result;
+    }
+
+    // somme devis
+    public double somme_devis_rehetra () {
+        return devisRepository.somme_devis_rehetra();
     }
 }

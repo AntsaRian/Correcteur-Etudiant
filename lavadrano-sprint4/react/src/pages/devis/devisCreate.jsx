@@ -78,7 +78,16 @@ export default function DevisCreate() {
     }
 
     function handleDetailChange(id, champ, valeur) {
-        setDetails(prev => prev.map(d => d.id === id ? { ...d, [champ]: valeur } : d));
+        // if (champ === "prix_unitaire" && valeur >= 1000000) {
+        //     valeur = valeur * 0.1
+        //     console.log("VALEUR: "+valeur);
+        // }
+
+        setDetails(prev => 
+            prev.map(d => d.id === id ? {
+                ...d, [champ]: valeur 
+            } : d)
+        );
     }
 
     const montantTotal = details.reduce((acc, d) => acc + (d.prix_unitaire * d.quantite), 0);

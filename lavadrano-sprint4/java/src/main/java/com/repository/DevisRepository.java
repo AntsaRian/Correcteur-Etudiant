@@ -23,5 +23,14 @@ public interface DevisRepository extends JpaRepository<Devis, Integer> {
         )
         ORDER BY d.id DESC
     """)
-    List<Object[]> getAll_avec_statut();   
+    List<Object[]> getAll_avec_statut();
+
+    // somme devis
+    @Query("""
+        SELECT SUM(dv.prix_unitaire * dv.quantite)
+        FROM Devis d
+        JOIN Details_devis dv 
+        ON d.id = dv.devis.id
+    """)
+    double somme_devis_rehetra();
 }   

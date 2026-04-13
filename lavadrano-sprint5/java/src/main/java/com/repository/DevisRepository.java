@@ -1,0 +1,36 @@
+package com.repository;
+
+import com.entity.Devis;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface DevisRepository extends JpaRepository<Devis, Integer> {
+    // getAll_avec statut
+   @Query("""
+        SELECT d, ds 
+        FROM Devis d 
+        JOIN Details_devis dv ON d.id = dv.devis.id 
+        JOIN Demande_statut ds ON ds.demande.id = d.demande.id
+        WHERE ds.id = (
+            SELECT MIN(ds2.id)
+            FROM Demande_statut ds2
+            WHERE ds2.demande.id = d.demande.id
+            AND ds2.daty >= d.daty
+        )
+        ORDER BY d.id DESC
+    """)
+    List<Object[]> getAll_avec_statut();
+
+    // somme devis
+    @Query("""
+        SELECT SUM(dv.prix_unitaire * dv.quantite)
+        FROM Devis d
+        JOIN Details_devis dv 
+        ON d.id = dv.devis.id
+    """)
+    double somme_devis_rehetra();
+}   

@@ -24,6 +24,12 @@ export default function Navbar() {
                 <button onClick={() => navigate("/SommeDevis")}>
                     Somme devis
                 </button>
+                <button onClick={() => navigate("/Statut")}>
+                    Statut
+                </button>
+                <button onClick={() => navigate("/DemandeStatut")}>
+                    Demande statut
+                </button>
             </div>
         </>
     )

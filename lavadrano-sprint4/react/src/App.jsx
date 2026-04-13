@@ -8,9 +8,9 @@ import ClientList   from "./pages/client/ClientList";
 import ClientCreate from "./pages/client/ClientCreate";
 import ClientEdit   from "./pages/client/ClientEdit";
 
-import DemandeList   from "./pages/demande/DemandeList";
-import DemandeCreate from "./pages/demande/DemandeCreate";
-import DemandeEdit   from "./pages/demande/DemandeEdit";
+import DemandeList   from "./pages/demande/Demandelist";
+import DemandeCreate from "./pages/demande/Demandecreate";
+import DemandeEdit   from "./pages/demande/Demandeedit";
 
 import TypeDevisList from "./pages/type_devis/typeDevisList";
 import TypeDevisCreate from "./pages/type_devis/typeDevisCreate";
@@ -19,6 +19,12 @@ import TypeDevisEdit from "./pages/type_devis/typeDevisEdit";
 import DevisCreate from "./pages/devis/devisCreate";
 
 import SommeDevis from "./pages/somme_devis/somme_devis";
+
+import StatutList from "./pages/statut/listStatut";
+import StatutCreate from "./pages/statut/StatutCreate";
+import StatutEdit from "./pages/statut/StatutEdit";
+
+import DemandeStatutList from "./pages/demande_statut/DemandeStatutList";
 
 function App() {
   return (
@@ -44,6 +50,12 @@ function App() {
 
           <Route path="/Devis"           element={<DevisCreate />} />
           <Route path="/SommeDevis"           element={<SommeDevis />} />
+
+          <Route path="/Statut"           element={<StatutList />} />
+          <Route path="/Statut/create"    element={<StatutCreate />} />
+          <Route path="/Statut/edit/:id"  element={<StatutEdit />} />
+
+          <Route path="/DemandeStatut"  element={<DemandeStatutList />} />
 
         </Routes>
       </div>

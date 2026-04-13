@@ -43,7 +43,8 @@ CREATE TABLE Demande_statut (
     id SERIAL PRIMARY KEY,
     id_demande INT REFERENCES Demande(id) NOT NULL,
     id_statut INT REFERENCES Statuts(id) NOT NULL,
-    daty TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    daty TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observation TEXT
 );
 
 CREATE TABLE Remise (

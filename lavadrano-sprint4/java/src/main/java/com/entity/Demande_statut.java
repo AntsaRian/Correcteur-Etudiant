@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "Demande_statut")
 public class Demande_statut {
@@ -14,7 +12,6 @@ public class Demande_statut {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_demande", nullable = false)
     private Demande demande;
@@ -27,6 +24,9 @@ public class Demande_statut {
     @CreationTimestamp
     private LocalDateTime daty;
 
+    @Column(name = "observation")
+    private String observation;
+
     public Demande_statut () {}
 
     public Demande_statut(Demande demande, Statuts statuts) {
@@ -34,11 +34,12 @@ public class Demande_statut {
         this.statuts = statuts;
     }
 
-    public Demande_statut(Integer id, Demande demande, Statuts statuts, LocalDateTime daty) {
+    public Demande_statut(Integer id, Demande demande, Statuts statuts, LocalDateTime daty, String observation) {
         this.id = id;
         this.demande = demande;
         this.statuts = statuts;
         this.daty = daty;
+        this.observation = observation;
     }
 
     public Integer getId() {
@@ -71,5 +72,13 @@ public class Demande_statut {
 
     public void setDaty(LocalDateTime daty) {
         this.daty = daty;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 }

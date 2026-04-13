@@ -2,6 +2,8 @@ package com.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class Demande {
     @Column(name = "district", nullable = false, length = 50)
     private String district;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "demande")
     private List<Demande_statut> demande_statuts;
 
